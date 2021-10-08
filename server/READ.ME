@@ -1,0 +1,29 @@
+# https://elinux.org/Jetson_Zoo#PyTorch_.28Caffe2.29
+# https://qengineering.eu/install-pytorch-on-jetson-nano.html
+# https://elinux.org/Jetson_Zoo
+# https://github.com/JaidedAI/EasyOCR/issues/491
+
+
+#only Python 3.6!
+$ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+$ sudo update-alternatives --config python3 
+
+$ sudo apt-get install libopenblas-base libopenmpi-dev 
+
+$ python3 -m venv venv
+$ source venv/bin/activate
+(venv)$ pip3 install Cython
+(venv)$ pip3 install numpy ~/torch-1.9.0-cp36-cp36m-linux_aarch64.whl
+
+#https://github.com/warmspringwinds/pytorch-segmentation-detection/issues/20
+#  Error got an unexpected keyword argument 'fully_conv'
+#  done: подменил файл по ссылке https://github.com/warmspringwinds/vision/blob/eb6c13d3972662c55e752ce7a376ab26a1546fb5/torchvision/models/resnet.py
+
+#https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/pytorch_vision_deeplabv3_resnet101.ipynb#scrollTo=PIpVyhHlvO4l
+#https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/
+#https://github.com/warmspringwinds/pytorch-segmentation-detection
+#https://github.com/warmspringwinds/pytorch-segmentation-detection
+
+echo "tmpfs /RAM 	tmpfs size=10m 0 0" >> /etc/fstab
+
+
