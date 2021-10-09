@@ -1,0 +1,27 @@
+** Yet Another Virtual Room 
+
+This app work in client server mode and intended for replace baclground on video
+
+* Install 
+
+Client (linux only)
+1) copy client folder to client computer.
+2) install v4l2loopback-utils, v4l2loopback-kmp-default, v4l2loopback-autoload to system. Note: this module is not signed, maybe configure kernel for accept nnosigned modules - I used mokutil.
+3) add record "d.yacenko ALL=(ALL) NOPASSWD: /usr/sbin/modprobe, /usr/bin/kmod " to /etc/sudoers
+4) install python and all needed library. I use python 3.6.13, pyfakewebcam, opencv, numpy, PILimage, tkinter
+5) run python3 ui.py
+
+Server (Jetson B01 NANO 2G)
+1) copy server and vision folder to Nano 
+2) create folder /RAM and mount ramdisk to that folder - add record "tmpfs /RAM 	tmpfs size=10m 0 0 " to /etc/fstab
+3) sudo apt-get install libopenblas-base libopenmpi-dev
+4) I use Python 3.6.9
+5) cd to server folder and install to virtual environment all needed library. This pytorch 1.9.0 (from https://elinux.org/Jetson_Zoo), cython, numpy and so on. Torchvision I use from folder vision 
+6) run server.py
+
+* Using app
+1) run server and client ui
+2) in client ui configure video camera in (show in preview), video out (not preview) , and server url (for ex http://to.srv.ip.addr:8080), configure other param (background and so n)
+3) click start button
+4) preview can be seen - ffmplay /dev/video20
+5) video demonstartion: https://drive.google.com/file/d/1VlaSLGa5P0YtwAdNDjHJI9W7D7Tcl3PS/view?usp=sharing)  
